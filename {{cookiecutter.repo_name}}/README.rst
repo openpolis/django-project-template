@@ -41,9 +41,9 @@ Vedi gli autori di questo progetto nel file CONTRIBUTORS.txt
 
 -----
 
-Generated with `cookiecutter`_ and `joke2k`_ /`django16-template`_ 0.1
+Generated with `cookiecutter`_ and `openpolis`_ /`django16-template`_ 0.1
 
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
-.. _joke2k: https://github.com/joke2k
-.. _django16-template: https://github.com/joke2k/django16-template
+.. _openpolis: https://github.com/openpolis
+.. _django16-template: https://github.com/openpolis/django16-template
