@@ -24,7 +24,8 @@ Usage
 
 To build new project:
 
-``
+.. code-block:: bash
+
     pip install cookiecutter
     cookiecutter https://github.com/joke2k/django16-template.git
 
@@ -36,8 +37,6 @@ To build new project:
     python project/manage.py runserver
 
 Edit `config/.env` with your setting values.
-
-Improve
 
 Other templates
 ---------------
