@@ -7,7 +7,7 @@ from environ import Env
 
 
 ########## PATH CONFIGURATION
-PACKAGE_PATH = dirname(abspath(__file__))
+PACKAGE_PATH = dirname(dirname(abspath(__file__)))
 PACKAGE_NAME = basename(PACKAGE_PATH)
 
 PROJECT_PATH = dirname(PACKAGE_PATH)
