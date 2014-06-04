@@ -1,0 +1,15 @@
+# This is an implicit value, here for clarity
+--index-url https://pypi.python.org/simple/
+
+# Bleeding edge Django
+Django>=1.6,<1.7
+
+# Configuration
+django-environ>=0.3
+
+# Forms
+django-braces
+
+# Models
+South
+django-model-utils

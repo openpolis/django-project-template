@@ -1,0 +1,8 @@
+# Local development dependencies go here
+-r common.txt
+selenium
+coverage
+Sphinx
+
+# django-debug-toolbar that works with Django 1.5+
+django-debug-toolbar

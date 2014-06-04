@@ -1,0 +1,10 @@
+{
+    "project_name": "Project name",
+    "repo_name":"repo-name",
+    "package_name":"package_name",
+    "author_name": "Your name",
+    "email": "Your email",
+    "description": "A short description of the project.",
+    "year": "2014",
+    "domain_name": "example.com"
+}

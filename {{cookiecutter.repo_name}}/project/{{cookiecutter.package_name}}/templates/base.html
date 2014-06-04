@@ -1,0 +1,82 @@
+{% raw %}{% load staticfiles i18n %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block page_title %}{% endraw %}{{ cookiecutter.project_name }}{% raw %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block page_description %}{% endraw %}{{ cookiecutter.description }}{% raw %}{% endblock %}">
+    <meta name="author" content="{% block page_author %}{% endraw %}{{ cookiecutter.author_name }}{% raw %}{% endblock %}">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    {% block css %}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+    <!-- This file store project specific CSS -->
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    {% endblock css %}
+
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
+</head>
+
+<body>
+
+<div class="header navbar navbar-default">
+    <div class="container">
+        <a class="navbar-brand" href="/">{{ project_title }}</a>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+
+            {% if request.user.is_authenticated %}
+            <li><a href="#">{% trans "My Profile" %}</a></li>
+            <li><a href="#">{% trans "Logout" %}</a></li>
+            {% else %}
+            <li><a href="#">{% trans "Sign Up" %}</a></li>
+            <li><a href="#">{% trans "Log In" %}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+{% endfor %}
+{% endif %}
+
+{% block content %}
+<p>Use this document as a way to quick start any new project.</p>
+{% endblock content %}
+
+</div> <!-- /container -->
+
+{% block modal %}{% endblock modal %}
+
+<!-- Javascripts
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% block javascript %}
+<!-- Latest JQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<!-- Your stuff: Third-party javascript libraries go here -->
+
+<!-- place project specific Javascript in this file -->
+<script src="{% static 'js/project.js' %}"></script>
+{% endblock javascript %}
+</body>
+</html>{% endraw %}
