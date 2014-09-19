@@ -27,7 +27,7 @@ To build new project:
 .. code-block:: bash
 
     pip install cookiecutter
-    cookiecutter https://github.com/joke2k/django16-template.git
+    cookiecutter https://github.com/openpolis/django16-template.git
 
     cd <repo_name>
     mkvirtualenv <repo_name>
