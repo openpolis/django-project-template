@@ -2,14 +2,14 @@
 --index-url https://pypi.python.org/simple/
 
 # Bleeding edge Django
-Django>=1.6,<1.7
+Django>=1.7,<1.8
+django-extensions>=1.4
 
 # Configuration
 django-environ>=0.3
 
 # Forms
-django-braces
+django-braces>=1.4
 
 # Models
-South
-django-model-utils
+django-model-utils>=2.2

@@ -1,19 +1,19 @@
-Django16-template project
+Django17-template project
 =========================
 
-A `cookiecutter`_ template for Django16.
+A `cookiecutter`_ template for Django17.
 
 Version: 0.1
 
 Features
 --------
 
-* For Django16
+* Django 1.7
 * Use `cookiecutter`_ to build new project
 * django-environ (config/.env)
 * django-braces
 * django-model-utils
-* south
+* django-extensions
 * two-scoops like settings (package with `development.py`, `production.py` and `test.py`)
 * django-debug-toolbar (only `development.py`)
 * docs with Sphinx
@@ -27,7 +27,7 @@ To build new project:
 .. code-block:: bash
 
     pip install cookiecutter
-    cookiecutter https://github.com/openpolis/django16-template.git
+    cookiecutter https://github.com/openpolis/django16-template.git --checkout django17
 
     cd <repo_name>
     mkvirtualenv <repo_name>

@@ -43,16 +43,19 @@ TEMPLATE_DEBUG = DEBUG
 
 
 ########## MANAGER CONFIGURATION
+ADMIN_EMAIL = env.str('ADMIN_EMAIL', 'admin@%s.com' % PROJECT_NAME)
+ADMIN_NAME = env.str('ADMIN_NAME', ADMIN_EMAIL.split('@')[0])
+
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = (
-    ('{{cookiecutter.author_name}}', '{{cookiecutter.email}}'),
+    (ADMIN_EMAIL, ADMIN_NAME),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = ADMINS[0][1]
+DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL', ADMIN_EMAIL)
 ########## END MANAGER CONFIGURATION
 
 
@@ -249,6 +252,11 @@ LOGGING = {
             'filename': normpath(join(RESOURCES_PATH, 'logs', '{{cookiecutter.package_name}}.log')),
             'formatter': 'verbose'
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django.request': {
@@ -267,12 +275,7 @@ WSGI_APPLICATION = '%s.wsgi.application' % PACKAGE_NAME
 ########## END WSGI CONFIGURATION
 
 
-########## SOUTH CONFIGURATION
-# See: http://south.readthedocs.org/en/latest/installation.html#configuring-your-django-installation
-INSTALLED_APPS += (
-    # Database migration helpers:
-    'south',
-)
-# Don't need to use South when setting up a test database.
-SOUTH_TESTS_MIGRATE = False
-########## END SOUTH CONFIGURATION
+########## TESTING CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/releases/1.6/#new-test-runner
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+########## END TESTING CONFIGURATION
