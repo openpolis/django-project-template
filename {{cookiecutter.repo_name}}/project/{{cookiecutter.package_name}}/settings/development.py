@@ -62,7 +62,12 @@ INTERNAL_IPS = ('127.0.0.1',)
 LOGGING['loggers'] = {
     '': {
         'handlers': ['console', 'file'],
-        'level': 'DEBUG'
-    }
+        'level': 'WARNING',
+    },
+    'django': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+        'propagate': True,
+    },
 }
 ########## END LOGGING CONFIGURATION
