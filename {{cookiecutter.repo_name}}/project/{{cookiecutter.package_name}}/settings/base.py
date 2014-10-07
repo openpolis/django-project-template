@@ -241,32 +241,66 @@ LOGGING = {
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'
         }
     },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'verbose',
         },
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': normpath(join(RESOURCES_PATH, 'logs', '{{cookiecutter.package_name}}.log')),
-            'formatter': 'verbose'
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': normpath(join(RESOURCES_PATH, 'logs', '{{cookiecutter.repo_name}}.log')),
+            'maxBytes': 1024*1024*5, # 5 MB
+            'backupCount': 7,
+            'formatter': 'verbose',
         },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
         },
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        }
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
+        '': {
+            'handlers': ['null', ],
+            'level': 'INFO',
+        },
+        'django': {
+            'handlers': ['null', ],
+            'level': 'INFO',
             'propagate': True,
         },
+        'django.db': {
+            'handlers': ['null', ],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['file', 'mail_admins'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'django.security': {
+            'handlers': ['null', ],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        '{{cookiecutter.package_name}}': {
+            'handlers': ['file', ],
+            'level': 'INFO',
+            'propagate': True,
+        }
     }
 }
 ########## END LOGGING CONFIGURATION

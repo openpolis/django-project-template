@@ -31,7 +31,13 @@ DATABASES = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOGGING['loggers']['django.request']['handlers'] = ['mail_admins']
+# See base.LOGGING
+LOGGING['loggers'] = {
+    '': {
+        'handlers': ['file', ],
+        'level': 'DEBUG' if DEBUG else 'INFO'
+    }
+}
 ########## END LOGGING CONFIGURATION
 
 

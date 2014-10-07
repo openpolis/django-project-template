@@ -15,18 +15,21 @@ Clona questo repository, entra nella cartella creata poi esegui:
 ::
 
     $ pip install -r requirements/development.txt
+    $ python project/manage.py syncdb
     $ python project/manage.py runserver
+
+Configura il file `config/.env` con i parametri necessari a far partire l'applicazione.
 
 Testing
 -------
 
-To start all Django TestCase modules:
+Per avviare tutti i moduli TestCase Django:
 
 ::
 
     $ python project/manage.py test
 
-To start functional test with selenium:
+Per avviare i test funzionali con selenium:
 
 ::
 
@@ -37,13 +40,3 @@ License
 
 Vedi il file LICENSE.txt
 Vedi gli autori di questo progetto nel file CONTRIBUTORS.txt
-
-
------
-
-Generated with `cookiecutter`_ and `openpolis`_ /`django16-template`_ 0.1
-
-
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
-.. _openpolis: https://github.com/openpolis
-.. _django16-template: https://github.com/openpolis/django16-template
