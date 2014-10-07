@@ -1,7 +1,7 @@
-Django17-template project
-=========================
+Django-project-template
+=======================
 
-A `cookiecutter`_ template for Django17.
+A `cookiecutter`_ template for Django.
 
 Version: 0.1
 
@@ -27,7 +27,8 @@ To build new project:
 .. code-block:: bash
 
     pip install cookiecutter
-    cookiecutter https://github.com/openpolis/django16-template.git --checkout django17
+    cookiecutter https://github.com/openpolis/django-project-template.git
+    # use option --checkout for specific branch (django16 or django17)
 
     cd <repo_name>
     mkvirtualenv <repo_name>
