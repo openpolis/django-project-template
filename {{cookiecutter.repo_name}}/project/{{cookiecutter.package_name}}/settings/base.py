@@ -43,8 +43,8 @@ TEMPLATE_DEBUG = DEBUG
 
 
 ########## MANAGER CONFIGURATION
-ADMIN_EMAIL = env.str('ADMIN_EMAIL', 'admin@%s.com' % PROJECT_NAME)
-ADMIN_NAME = env.str('ADMIN_NAME', ADMIN_EMAIL.split('@')[0])
+ADMIN_EMAIL = env('ADMIN_EMAIL', default='admin@%s.com' % PROJECT_NAME)
+ADMIN_NAME = env('ADMIN_NAME', default=ADMIN_EMAIL.split('@')[0])
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = (
@@ -55,7 +55,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL', ADMIN_EMAIL)
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default=ADMIN_EMAIL)
 ########## END MANAGER CONFIGURATION
 
 
@@ -90,7 +90,7 @@ USE_TZ = True
 
 ########## MEDIA CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = normpath(join(RESOURCES_PATH, 'media'))
+MEDIA_ROOT = env('MEDIA_ROOT', default=normpath(join(RESOURCES_PATH, 'media')))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
@@ -99,7 +99,7 @@ MEDIA_URL = '/media/'
 
 ########## STATIC FILE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = normpath(join(RESOURCES_PATH, 'static'))
+STATIC_ROOT = env('STATIC_ROOT', default=normpath(join(RESOURCES_PATH, 'static')))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
