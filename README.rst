@@ -30,9 +30,10 @@ To build new project:
 
     pip install cookiecutter
     cookiecutter https://github.com/openpolis/django-project-template.git
-    # use option --checkout for specific branch (django16 or django17)
+    # use option --checkout for specific branch (django16, django17 or django19)
 
     cd <repo_name>
+    cp config/sample/.env config/
     mkvirtualenv <repo_name>
     setvirtualenvproject
     pip install -r requirements/development.txt
@@ -40,6 +41,21 @@ To build new project:
     python project/manage.py runserver
 
 Edit `config/.env` with your setting values.
+
+Project comes with no external DBMS configured (uses default sqlite db).
+
+To install a database:
+
+* add ``psycopg2`` to ``requirements/common.txt``
+* uncomment ``DATABASE_URL`` line in ``config/.env`` (setting DB_NAME)
+* create db
+* launch migrate
+
+.. code-block:: bash
+
+    createdb -Upostgres DB_NAME
+    python project/manage.py migrate
+
 
 Other templates
 ---------------
