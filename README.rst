@@ -42,8 +42,19 @@ To build new project:
 
 Edit `config/.env` with your setting values.
 
-Projecc comes with no external DBMS configured (uses default sqlite db).
+Project comes with no external DBMS configured (uses default sqlite db).
+
 To install a database:
+
+* add ``psycopg2`` to ``requirements/common.txt``
+* uncomment ``DATABASE_URL`` line in ``config/.env`` (setting DB_NAME)
+* create db
+* launch migrate
+
+.. code-block:: bash
+
+    createdb -Upostgres DB_NAME
+    python project/manage.py migrate
 
 
 Other templates
