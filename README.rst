@@ -42,6 +42,10 @@ To build new project:
 
 Edit `config/.env` with your setting values.
 
+Projecc comes with no external DBMS configured (uses default sqlite db).
+To install a database:
+
+
 Other templates
 ---------------
 
