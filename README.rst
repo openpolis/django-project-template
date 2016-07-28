@@ -30,9 +30,10 @@ To build new project:
 
     pip install cookiecutter
     cookiecutter https://github.com/openpolis/django-project-template.git
-    # use option --checkout for specific branch (django16 or django17)
+    # use option --checkout for specific branch (django16, django17 or django19)
 
     cd <repo_name>
+    cp config/sample/.env config/
     mkvirtualenv <repo_name>
     setvirtualenvproject
     pip install -r requirements/development.txt
