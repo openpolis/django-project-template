@@ -1,8 +1,8 @@
 # This is an implicit value, here for clarity
 --index-url https://pypi.python.org/simple/
 
-# Bleeding edge Django
-Django>=1.7,<1.8
+# Bleeding edge Django (py 2.7, 3.4, 3.5)
+Django>=1.8,<1.10
 django-extensions>=1.4
 
 # Configuration

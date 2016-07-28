@@ -5,16 +5,6 @@ from __future__ import absolute_import
 from .base import *
 
 
-########## DEBUG CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = env.bool('DEBUG', False)
-DEBUG_TOOLBAR = False
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = False
-########## END DEBUG CONFIGURATION
-
-
 ########## HOST CONFIGURATION
 # See: https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])

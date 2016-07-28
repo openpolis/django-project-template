@@ -36,9 +36,7 @@ env = Env()
 ########## DEBUG CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool('DEBUG', False)
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
+DEBUG_TOOLBAR = DEBUG
 ########## END DEBUG CONFIGURATION
 
 
@@ -120,7 +118,7 @@ STATICFILES_FINDERS = (
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Note: This key should only be used for development and testing.
-SECRET_KEY = r"$secret_key"
+SECRET_KEY = r"!^8(s+)^#^r@qmptaajqf+d#dgpn=%(ds56x0_q17cwx$zytu_"
 ########## END SECRET CONFIGURATION
 
 
@@ -140,28 +138,30 @@ FIXTURE_DIRS = (
 
 
 ########## TEMPLATE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-)
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-TEMPLATE_DIRS = (
-    normpath(join(PACKAGE_PATH, 'templates')),
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            normpath(join(PACKAGE_PATH, 'templates')),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': DEBUG,
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+            ],
+        },
+    },
+]
 ########## END TEMPLATE CONFIGURATION
 
 
@@ -175,6 +175,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 )
 ########## END MIDDLEWARE CONFIGURATION
 
@@ -238,70 +239,29 @@ LOGGING = {
             'format': '%(levelname)s %(message)s'
         },
     },
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        },
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue'
-        }
-    },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'verbose',
-        },
         'file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': normpath(join(RESOURCES_PATH, 'logs', '{{cookiecutter.repo_name}}.log')),
+            'filename': normpath(join(RESOURCES_PATH, 'logs', '{{ cookiecutter.repo_name }}.log')),
             'maxBytes': 1024*1024*5, # 5 MB
             'backupCount': 7,
             'formatter': 'verbose',
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'null': {
-            'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
-        }
     },
     'loggers': {
-        '': {
-            'handlers': ['null', ],
-            'level': 'INFO',
-        },
         'django': {
-            'handlers': ['null', ],
-            'level': 'INFO',
-            'propagate': True,
-        },
-        'django.db': {
-            'handlers': ['null', ],
+            'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': True,
         },
-        'django.request': {
-            'handlers': ['file', 'mail_admins'],
-            'level': 'WARNING',
-            'propagate': True,
-        },
-        'django.security': {
-            'handlers': ['null', ],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        '{{cookiecutter.package_name}}': {
+        '{{ cookiecutter.package_name }}': {
             'handlers': ['file', ],
             'level': 'INFO',
             'propagate': True,
         }
-    }
+        
+    },
 }
 ########## END LOGGING CONFIGURATION
 
@@ -316,3 +276,5 @@ WSGI_APPLICATION = '%s.wsgi.application' % PACKAGE_NAME
 # See: https://docs.djangoproject.com/en/dev/releases/1.6/#new-test-runner
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 ########## END TESTING CONFIGURATION
+
+

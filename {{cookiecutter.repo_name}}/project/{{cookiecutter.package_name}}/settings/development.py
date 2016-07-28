@@ -7,16 +7,6 @@ from os.path import join, normpath
 from .base import *
 
 
-########## DEBUG CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = env.bool('DEBUG', True)
-DEBUG_TOOLBAR = True
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
-########## END DEBUG CONFIGURATION
-
-
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -60,6 +50,12 @@ INTERNAL_IPS = ('127.0.0.1',)
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+LOGGING['handlers']['console'] = {
+    'level': 'DEBUG',
+    'class': 'logging.StreamHandler',
+    'formatter': 'verbose',
+}
+
 LOGGING['loggers'] = {
     '': {
         'handlers': ['console', 'file'],
