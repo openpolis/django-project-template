@@ -33,3 +33,7 @@ node_modules/
 
 # Campass
 .sass-cache
+
+# osx .DS_Store
+.DS_Store
+
