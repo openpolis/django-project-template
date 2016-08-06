@@ -4,7 +4,7 @@ from .base import *
 
 ########## IN-MEMORY TEST DATABASE
 DATABASES = {
-    "default": env.db('sqlite://:memory:'),
+    "default": env.db(default='sqlite://:memory:'),
 }
 
 
