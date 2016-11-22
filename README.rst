@@ -34,7 +34,8 @@ To build new project:
 
     cd <repo_name>
     cp config/sample/.env config/
-    mkvirtualenv <repo_name> [--python=$(which python3)]
+    mkvirtualenv <repo_name> 
+    # use option --python=$(which python3) to create a python3 virtualenv
     setvirtualenvproject
     pip install -r requirements/development.txt
     python project/manage.py syncdb
