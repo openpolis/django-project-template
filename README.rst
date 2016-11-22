@@ -9,8 +9,7 @@ Features
 --------
 
 * Python 2.7, 3.4 or 3.5
-* Django 1.9
-* Django 1.10 ready (deprecations removed)
+* Django 1.10
 * Use `cookiecutter`_ to build new project
 * django-environ (config/.env)
 * django-braces
