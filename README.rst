@@ -36,7 +36,7 @@ To build new project:
     mkvirtualenv <repo_name>
     setvirtualenvproject
     pip install -r requirements/development.txt
-    python project/manage.py syncdb
+    python project/manage.py migrate
     python project/manage.py runserver
 
 Edit `config/.env` with your setting values.
