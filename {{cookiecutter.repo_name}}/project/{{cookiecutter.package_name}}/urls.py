@@ -28,7 +28,9 @@ urlpatterns = urls
 # static and media urls not works with DEBUG = True, see static function.
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG_TOOLBAR:
+if settings.DEBUG:
     import debug_toolbar
-    urlpatterns.append(url(r'^_x\_debug__/', debug_toolbar.urls))
+    urlpatterns.append(
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )
 
