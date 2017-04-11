@@ -36,7 +36,7 @@ env = Env()
 ########## DEBUG CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool('DEBUG', False)
-DEBUG_TOOLBAR = DEBUG
+DEBUG_TOOLBAR = env.bool('DEBUG_TOOLBAR', DEBUG)
 ########## END DEBUG CONFIGURATION
 
 
