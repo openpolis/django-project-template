@@ -9,7 +9,7 @@ Features
 --------
 
 * Python 2.7, 3.4 or 3.5
-* Django 1.10
+* Django 1.11
 * Use `cookiecutter`_ to build new project
 * django-environ (config/.env)
 * django-braces
@@ -29,7 +29,8 @@ To build new project:
 
     pip install cookiecutter
     cookiecutter https://github.com/openpolis/django-project-template.git
-    # use option --checkout for specific branch (django16, django17 or django19)
+    # use option --checkout for specific branch (django16, django17, django19, django110)
+    # defaults to default branch (django111)
 
     cd <repo_name>
     cp config/sample/.env config/
