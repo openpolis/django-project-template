@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
@@ -26,10 +26,12 @@ urls = [
 urlpatterns = urls
 
 # static and media urls with DEBUG = True
-if setting.DEBUG:
+if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG_TOOLBAR:
     import debug_toolbar
-    urlpatterns.append(url(r'^_x\_debug__/', debug_toolbar.urls))
+    urlpatterns.append(
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )
 
