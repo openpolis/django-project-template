@@ -25,8 +25,9 @@ urls = [
 ]
 urlpatterns = urls
 
-# static and media urls not works with DEBUG = True, see static function.
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# static and media urls with DEBUG = True
+if setting.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG_TOOLBAR:
     import debug_toolbar
