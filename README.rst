@@ -58,6 +58,36 @@ To install a database:
     python project/manage.py migrate
 
 
+Notes to use geodjango:
+
+* follow instructions to install geolibraries: https://docs.djangoproject.com/en/1.11/ref/contrib/gis/install/geolibs/
+
+Django will produce the following error when trying to execute any commands:
+
+    django.contrib.gis.geos.error.GEOSException: Could not parse version info string "3.6.2-CAPI-1.10.2 4d2925d6"
+
+To correct this, a single modification is needed in the django distribution:
+
+.. code-block:: python
+
+    def geos_version_info():
+        """
+        Returns a dictionary containing the various version metadata parsed from
+        the GEOS version string, including the version number, whether the version
+        is a release candidate (and what number release candidate), and the C API
+        version.
+        """
+        ##
+        ## this line needs to be patched
+        ##
+        ver = geos_version().decode().split(' ')[0]
+        m = version_regex.match(ver)
+        if not m:
+            raise GEOSException('Could not parse version info string "%s"' % ver)
+        return {key: m.group(key) for key in (
+            'version', 'release_candidate', 'capi_version', 'major', 'minor', 'subminor')}
+
+
 Other templates
 ---------------
 
